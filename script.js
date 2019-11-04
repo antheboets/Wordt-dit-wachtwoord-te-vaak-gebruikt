@@ -10,13 +10,11 @@ function getResponse() {
     let obj = {methode: "GET"};
     let url = "https://api.pwnedpasswords.com/range/" + pasHas.substr(0, 5);
     fetch(url,obj).then(readyPromise).then((data) => {
-        let pasHas = SHA1(document.getElementById("a").value);
+        let pasHas = SHA1(document.getElementById("a").value).toUpperCase();
         let arr = [];
         arr = data.split("\n");
         for(let i= 0; i < arr.length; i++){
-            console.log((pasHas.substr(0,5) + " " + arr[i].substr(5,35)));
-            console.log(pasHas);
-            if((arr[i].substr(5,26) + pasHas.substr(0)) === pasHas){
+            if((pasHas.substr(0,5) + arr[i].substr(0,35)) == pasHas){
                 count =  arr[i].substr(41, arr[i].length - 40);
                 if(count > 300){
                     drawClear();
