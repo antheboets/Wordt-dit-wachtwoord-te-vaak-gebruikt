@@ -1,0 +1,9 @@
+#result{
+    border: 1px solid black;
+}
+.alert{
+    background:red;
+}
+.clear{
+    background: green;
+}
