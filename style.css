@@ -1,10 +1,13 @@
 #result{
-    border: 1px solid black;
-    position: fixed;
+    width: fit-content;
+    padding: 1%;
+    margin-top: 1%;
 }
 .alert{
+    border: 1px solid black;
     background:red;
 }
 .clear{
+    border: 1px solid black;
     background: green;
 }

@@ -6,42 +6,42 @@ let readyPromise = (res) => {
     return res.text();
 };
 function getResponse() {
-    let pasHas = SHA1(document.getElementById("a").value);
-    let obj = {methode: "GET"};
-    let url = "https://api.pwnedpasswords.com/range/" + pasHas.substr(0, 5);
-    fetch(url,obj).then(readyPromise).then((data) => {
-        let pasHas = SHA1(document.getElementById("a").value).toUpperCase();
-        let arr = [];
-        arr = data.split("\n");
-        for(let i= 0; i < arr.length; i++){
-            if((pasHas.substr(0,5) + arr[i].substr(0,35)) == pasHas){
-                count =  arr[i].substr(41, arr[i].length - 40);
-                if(count > 300){
-                    drawClear();
-                }
-                else{
-                    drawAlert();
+    if(document.getElementById("input").value != ""){
+        let obj = {methode: "GET"};
+        let url = "https://api.pwnedpasswords.com/range/" + pasHash.substr(0, 5);
+        fetch(url,obj).then(readyPromise).then((data) => {
+            let pasHash = SHA1(document.getElementById("input").value).toUpperCase();
+            let arr = [];
+            arr = data.split("\n");
+            let found = false;
+            for(let i= 0; i < arr.length; i++){
+                if((pasHash.substr(0,5) + arr[i].substr(0,35)) == pasHash){
+                    count =  arr[i].substr(36, arr[i].length - 36);
+                    if(count > 300){
+                        drawResult("Alarm","wachtwoord wordt vaak gebruikt","alert");
+                        found = true;
+                    }
                 }
             }
-        }
-    });
+            if(!found){
+                drawResult("Veiligh","wachtwoord wordt niet vaak gebruikt","clear");
+            }
+        });
+    }
 }
-function drawAlert(){
+function drawResult(h2Text, pText,className){
     let div = document.getElementById("result");
-    div.style = "alert";
-    let h2 = document.createElement("H2").appendChild(document.createTextNode("Alert"));
+    div.innerHTML = "";
+    div.className = "";
+    div.classList.add(className);
+    let h2 = document.createElement("H2");
+    h2.appendChild(document.createTextNode(h2Text));
     div.appendChild(h2);
-    let p = document.createElement("P").appendChild(document.createTextNode("wachtwoord niet goed AAAAAAAAA"));
+    let p = document.createElement("P");
+    p.appendChild(document.createTextNode(pText));
     div.appendChild(p);
 }
-function drawClear(){
-    let div = document.getElementById("result");
-    div.style = "clear";
-    let h2 = document.createElement("H2").appendChild(document.createTextNode("clear"));
-    div.appendChild(h2);
-    let p = document.createElement("P").appendChild(document.createTextNode("wachtwoort goed AAAAAAAAA"));
-    div.appendChild(p);
-}
+
 
 
 /**
