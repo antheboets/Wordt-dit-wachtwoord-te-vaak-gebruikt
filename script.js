@@ -7,6 +7,7 @@ let readyPromise = (res) => {
 };
 function getResponse() {
     if(document.getElementById("input").value != ""){
+        let pasHash = SHA1(document.getElementById("input").value);
         let obj = {methode: "GET"};
         let url = "https://api.pwnedpasswords.com/range/" + pasHash.substr(0, 5);
         fetch(url,obj).then(readyPromise).then((data) => {
