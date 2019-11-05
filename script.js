@@ -1,7 +1,4 @@
 document.getElementById("zoekBtn").addEventListener("click",getResponse);
-let drawResponse = (data) => {
-    console.log(data);
-};
 let readyPromise = (res) => {
     return res.text();
 };
