@@ -16,7 +16,7 @@ function getResponse() {
                 if((pasHash.substr(0,5) + arr[i].substr(0,35)) == pasHash){
                     count =  arr[i].substr(36, arr[i].length - 36);
                     if(count > 300){
-                        drawResult("Alarm","wachtwoord wordt vaak gebruikt","alert");
+                        drawResult("Alarm","wachtwoord wordt vaak gebruikt, het wordt " + count + " gebruikt","alert");
                         found = true;
                     }
                 }
