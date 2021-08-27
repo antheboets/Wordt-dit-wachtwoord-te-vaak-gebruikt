@@ -38,6 +38,7 @@ function drawResult(h2Text, pText,className){
     let p = document.createElement("P");
     p.appendChild(document.createTextNode(pText));
     div.appendChild(p);
+    p.addEventListener("");
 }
 
 
